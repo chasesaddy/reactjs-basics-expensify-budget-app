@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 
 import 'normalize.css/normalize.css';
 
@@ -10,18 +10,6 @@ import './styles/styles.scss';
 const ExpenseDashboardPage = () => (
   <div>
     This is from my dashboard component
-    
-    <ul>
-      <li>
-        <a href="/create">Create</a>
-      </li>
-      <li>
-        <a href="/edit">Edit</a>
-      </li>
-      <li>
-        <a href="/help">Help</a>
-      </li>
-    </ul>
   </div>
 );
 
@@ -45,19 +33,45 @@ const HelpPage = () => (
 
 const NotFoundPage = () => (
   <div>
-    404
+    404 - <Link to="/">Go home</Link>
   </div>
 );
 
+const Header = () => (
+  <header>
+    <h1>
+      Expensify
+    </h1>
+
+    <ul>
+      <li>
+        <NavLink to="/" activeClassName="is-active" exact={ true }>Dashboard</NavLink>
+      </li>
+      <li>
+        <NavLink to="/create" activeClassName="is-active">Create</NavLink>
+      </li>
+      <li>
+        <NavLink to="/edit" activeClassName="is-active">Edit</NavLink>
+      </li>
+      <li>
+        <NavLink to="/help" activeClassName="is-active">Help</NavLink>
+      </li>
+    </ul>
+  </header>
+);
+
 const routes = (
-  <BrowserRouter>  
-    <Switch>
-      <Route path="/" component={ ExpenseDashboardPage } exact={ true } />
-      <Route path="/create" component={ AddExpensePage } exact={ true } />
-      <Route path="/edit" component={ EditExpensePage } exact={ true } />
-      <Route path="/help" component={ HelpPage } exact={ true } />
-      <Route component={ NotFoundPage } />
-    </Switch>
+  <BrowserRouter>
+    <div>
+      <Header />
+      <Switch>
+        <Route path="/" component={ ExpenseDashboardPage } exact={ true } />
+        <Route path="/create" component={ AddExpensePage } exact={ true } />
+        <Route path="/edit" component={ EditExpensePage } exact={ true } />
+        <Route path="/help" component={ HelpPage } exact={ true } />
+        <Route component={ NotFoundPage } />
+      </Switch>
+    </div>
   </BrowserRouter>
 );
 
