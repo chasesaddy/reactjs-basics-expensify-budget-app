@@ -110,9 +110,10 @@ store.dispatch( removeExpense( { id: expenseOne.expense.id } ) );
 
 
 //
-//// demo
+//// Examples/Demo
 //
 
+// example properties
 const demoState = {
   expenses: [
     {
@@ -130,3 +131,30 @@ const demoState = {
     endDate: undefined
   }
 };
+
+
+// Spreading Objects
+
+// example object
+const user = {
+  name: 'Kim',
+  age: 27
+};
+
+// Simple spread object syntax and just showing result of the object
+console.log({
+  ...user
+});
+// {name: "Kim", age: 27}
+
+// Placing properties after spreading the object overrides them
+console.log({
+  ...user, location: 'Philly', age: 28
+});
+// {name: "Kim", age: 28, location: "Philly"}
+
+// Does not override if property is placed before the spreading object
+console.log({
+  age: 28, ...user, location: 'Philly'
+});
+// {age: 27, name: "Kim", location: "Philly"}
