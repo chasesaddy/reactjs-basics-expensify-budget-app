@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore, combineReducers } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import uuid from 'uuid';
 
 // 
@@ -76,6 +76,7 @@ const setEndDate = ( date ) => ({
   type: 'SET_END_DATE',
   endDate: date
 });
+
 
 //
 //// Reducers
@@ -155,8 +156,9 @@ const filterReducer = ( state = filterReducerDefaultState, action ) => {
   }
 };
 
+
 //
-//// Other 
+//// Store creation
 //
 
 const store = createStore(
@@ -170,12 +172,17 @@ store.subscribe( () => {
   console.log( store.getState() );
 });
 
+
+//
+//// Calling methods
+//
+
 const expenseOne = store.dispatch(
   addExpense( { description: 'Rent', amount: 100000 } )
 );
 
 const expenseTwo = store.dispatch(
-  addExpense({ description: 'Coffee', amount: 300 })
+  addExpense( { description: 'Coffee', amount: 300 } )
 );
 
 console.log( 'expenseOne (doesn\'t show in middleware: ' );
