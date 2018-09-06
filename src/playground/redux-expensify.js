@@ -158,6 +158,44 @@ const filterReducer = ( state = filterReducerDefaultState, action ) => {
 
 
 //
+//// Shiz
+//
+
+const startDateMatch = ( objCreatedDate, startDate ) => {
+  return ( typeof startDate !== 'number' || objCreatedDate >= startDate );
+};
+
+const endDateMatch = ( objCreatedDate, endDate ) => {
+  return ( typeof endDate !== 'number' || objCreatedDate <= endDate );
+};
+
+const textMatch = ( objText, text ) => {
+  return ( typeof text !== 'string' || objText.toLowerCase().includes( text.toLowerCase() ) );
+};
+
+const getVisibleExpenses = ( expenses, { text, sortBy, startDate, endDate } ) => {
+  return expenses.filter( ( solo ) => {
+    // 
+    const startDateMatched = startDateMatch( solo.createdAt, startDate );    
+    const endDateMatched = endDateMatch( solo.createdAt, endDate );
+    const textMatched = textMatch( solo.description, text );
+    // const textMatched = true;
+
+    console.log( solo.description );
+    console.log( `start: ${ startDateMatched }` );
+    console.log( `end: ${ endDateMatched }` );
+
+    const test = typeof endDate !== 'number';
+    const testTwo = solo.createdAt <= endDate;
+    console.log( `test: ${ test }` );
+    console.log( `testTwo: ${ testTwo }` );
+
+    return startDateMatched && endDateMatched && textMatched;
+  });
+};
+
+
+//
 //// Store creation
 //
 
@@ -169,7 +207,10 @@ const store = createStore(
 );
 
 store.subscribe( () => {
-  console.log( store.getState() );
+  const state = store.getState();
+  const visibleExpenses = getVisibleExpenses( state.expenses, state.filters );
+  console.log( 'visibleExpenses: ' );
+  console.log( visibleExpenses );
 });
 
 
@@ -178,16 +219,16 @@ store.subscribe( () => {
 //
 
 const expenseOne = store.dispatch(
-  addExpense( { description: 'Rent', amount: 100000 } )
+  addExpense( { description: 'Rent', amount: 100000, createdAt: 100 } )
 );
 
 const expenseTwo = store.dispatch(
-  addExpense( { description: 'Coffee', amount: 300 } )
+  addExpense( { description: 'Coffee', amount: 300, createdAt: 10000 } )
 );
 
 console.log( 'expenseOne (doesn\'t show in middleware: ' );
 console.log( expenseOne );
-store.dispatch( removeExpense( { id: expenseOne.expense.id } ) );
+// store.dispatch( removeExpense( { id: expenseOne.expense.id } ) );
 
 store.dispatch( editExpense( expenseTwo.expense.id, { amount: 500 } ) );
 
