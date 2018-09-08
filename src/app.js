@@ -23,12 +23,12 @@ store.subscribe( () => {
 
 store.dispatch( addExpense( { description : 'Water bill', note : 'what you think?', amount : 2500, createdAt : 250000 } ) );
 store.dispatch( addExpense( { description : 'Gas bill', note : 'you smell something?', amount : 5050, createdAt : 5000 } ) );
-store.dispatch( setTextFilter( 'bill') );
-store.dispatch( setTextFilter( 'water' ) );
+// store.dispatch( setTextFilter( 'bill') );
+// store.dispatch( setTextFilter( 'water' ) );
 
-setTimeout( () => {
-  store.dispatch( setTextFilter( 'bill' ) );
-}, 3000 );
+// setTimeout( () => {
+//   store.dispatch( setTextFilter( 'bill' ) );
+// }, 3000 );
 
 const jsx = (
   <Provider store={ store }>

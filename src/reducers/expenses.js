@@ -9,8 +9,6 @@ const expensesReducer = ( state = expensesReducerDefaultState, action ) => {
       ...state, action.expense
     ];
   case 'REMOVE_EXPENSE': 
-    console.log( 'here' );
-    console.log( action.id );
     return state.filter( ( oneExpense ) => oneExpense.id !== action.id );
     // Could have done destructuring. Didn't think of that.
     // return state.filter( ( { id } ) => id !== action.id );
