@@ -5,16 +5,6 @@ const getVisibleExpenses = ( expenses, { text, sortBy, startDate, endDate } ) =>
     const startDateMatched = startDateMatch( solo.createdAt, startDate );    
     const endDateMatched = endDateMatch( solo.createdAt, endDate );
     const textMatched = textMatch( solo.description, text );
-    // const textMatched = true;
-
-    console.log( solo.description );
-    console.log( `start: ${ startDateMatched }` );
-    console.log( `end: ${ endDateMatched }` );
-
-    const test = typeof endDate !== 'number';
-    const testTwo = solo.createdAt <= endDate;
-    console.log( `test: ${ test }` );
-    console.log( `testTwo: ${ testTwo }` );
 
     return startDateMatched && endDateMatched && textMatched;
   }).sort( ( a, b ) => {
