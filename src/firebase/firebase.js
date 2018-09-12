@@ -17,4 +17,26 @@ firebase.initializeApp( firebaseConfig );
 
 const db = firebase.database();
 
-firebase.database().ref().set( { name: 'It Is Moi' } );
+db.ref().set( { 
+  name: 'It Is Moi',
+  age: 28,
+  isSingle: true,
+  location: {
+    city: 'Philah',
+    zip: '08904'
+  }
+} );
+
+// // completely overwrites
+// db.ref().set( { 
+//   age: 27,
+// } );
+
+// only overwrites the "ref"
+db.ref( 'name' ).set( 
+  'Moi Again'
+);
+
+db.ref( 'location/city' ).set( 
+  'NYC'
+);
