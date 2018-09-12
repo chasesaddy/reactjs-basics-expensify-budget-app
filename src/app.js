@@ -9,7 +9,7 @@ import { addExpense } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
 
-import './playground/firebase/firebase-fetching';
+import './playground/firebase/firebase-arrays';
 
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
