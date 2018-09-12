@@ -25,6 +25,10 @@ db.ref().set( {
     city: 'Philah',
     zip: '08904'
   }
+} ).then( () => { 
+  console.log( 'Data is saved' );
+} ).catch( ( e ) => { 
+  console.log( 'Data broke', e );
 } );
 
 // // completely overwrites
@@ -40,3 +44,12 @@ db.ref( 'name' ).set(
 db.ref( 'location/city' ).set( 
   'NYC'
 );
+
+db.ref( 'attributes' ).set( { 
+  height: 70,
+  width: 60
+} ).then( () => { 
+  console.log( 'Second call worked' );
+} ).catch( ( e ) => { 
+  console.log( 'Nope deux', e );
+} );
