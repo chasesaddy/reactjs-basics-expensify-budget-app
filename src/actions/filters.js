@@ -4,7 +4,7 @@
 
 // SET_TEXT_FILTERS
 
-const setTextFilter = ( text ) => ({
+const setTextFilter = ( text = '' ) => ({
   type: 'SET_TEXT_FILTER',
   text
 });
