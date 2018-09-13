@@ -6,7 +6,7 @@ const getVisibleExpenses = ( expenses, { text, sortBy, startDate, endDate } ) =>
     const createdAtMoment = moment( solo.createdAt )
 
     const startDateMatched = startDate ? moment( startDate ).isSameOrBefore( createdAtMoment, 'day' ) : true;
-    const endDateMatched = startDate ? moment( endDate ).isSameOrAfter( createdAtMoment, 'day' ) : true;
+    const endDateMatched = endDate ? moment( endDate ).isSameOrAfter( createdAtMoment, 'day' ) : true;
     const textMatched = textMatch( solo.description, text );
 
     return startDateMatched && endDateMatched && textMatched;
