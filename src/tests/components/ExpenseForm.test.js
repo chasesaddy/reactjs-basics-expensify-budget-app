@@ -104,8 +104,6 @@ test( 'should set new data on date change', () => {
   const now = moment();
   const wrapper = shallow( <ExpenseForm /> );
 
-  console.log( wrapper.debug() );
-
   // first way to make SingleDatePicker still not work as opposed to course not having an issue. This was from enzyme issue 184 comments.
   // wrapper.find( SingleDatePicker ).prop( 'onDateChange' )( now );
   // other way to make it work as opposed to course
