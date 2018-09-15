@@ -13,7 +13,7 @@ export class EditExpensePage extends React.Component {
   onClick = () => { 
     const theId = this.props.expense.id;
     
-    this.props.removeExpense( theId );
+    this.props.removeExpense( { id: theId } );
     this.props.history.push( '/' );
   };
 
@@ -33,15 +33,13 @@ export class EditExpensePage extends React.Component {
   };
 }
 
-const mapStateToProps = ( state, props ) => {
-  return {
-    expense: state.expenses.find( ( oneExpense ) => oneExpense.id === props.match.params.id )
-  };
-};
-
-const mapDispatchToProps = ( dispatch ) => ( { 
-  editExpense: ( theId, oneExpense ) => dispatch( editExpense( theId, oneExpense ) ),  
-  removeExpense: ( theId ) => dispatch( removeExpense( { id: theId } ) )
+const mapStateToProps = ( state, props ) => ( {
+  expense: state.expenses.find( ( oneExpense ) => oneExpense.id === props.match.params.id )
 } );
 
-export default connect( mapStateToProps )( EditExpensePage );
+const mapDispatchToProps = ( dispatch, props ) => ( { 
+  editExpense: ( theId, oneExpense ) => dispatch( editExpense( theId, oneExpense ) ),  
+  removeExpense: ( theId ) => dispatch( removeExpense( theId ) )
+} );
+
+export default connect( mapStateToProps, mapDispatchToProps )( EditExpensePage );

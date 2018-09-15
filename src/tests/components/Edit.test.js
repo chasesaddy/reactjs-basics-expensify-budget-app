@@ -34,8 +34,8 @@ test( 'should handle onSubmit which is editExpense', () => {
 } );
 
 test( 'should handle onClick which is removeExpense', () => { 
-  wrapper.find( 'button' ).prop( 'onClick' )();
+  wrapper.find( 'button' ).simulate( 'click' );
 
   expect( history.push ).toHaveBeenLastCalledWith( '/' );
-  expect( removeExpense ).toHaveBeenLastCalledWith( example.id );
+  expect( removeExpense ).toHaveBeenLastCalledWith( { id: example.id } );
 } );
