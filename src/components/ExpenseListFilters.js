@@ -4,7 +4,7 @@ import { DateRangePicker } from 'react-dates';
 
 import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../actions/filters';
 
-class ExpenseListFilters extends React.Component {
+export class ExpenseListFilters extends React.Component {
   state = {
     calFocused: null
   };
@@ -37,12 +37,12 @@ class ExpenseListFilters extends React.Component {
         <input 
           type="text" 
           value={ this.props.filters.text } 
-          onChange={ onTextChange }
+          onChange={ this.onTextChange }
         />
 
         <select 
           value={ this.props.filters.sortBy }
-          onChange={ onSortChange }
+          onChange={ this.onSortChange }
         >
           <option value="date">
             Date

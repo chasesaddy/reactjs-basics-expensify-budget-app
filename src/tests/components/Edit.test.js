@@ -5,7 +5,7 @@ import { EditExpensePage } from '../../components/Edit';
 
 import expenses from '../fixtures/expenses';
 
-let editExpense, removeExpense, history, wrapper, example;
+let wrapper, editExpense, removeExpense, history, example;
 beforeEach( () => { 
   editExpense = jest.fn();
   removeExpense = jest.fn();
