@@ -62,7 +62,7 @@ export class ExpenseListFilters extends React.Component {
           startDateId="start"
           endDateId="end"
           onDatesChange={ this.onDatesChange }
-          focusedInput={ this.state.calFocused }
+          focusedInput={ this.state.focusedInput }
           onFocusChange={ this.onFocusChange }
           showClearDates={ true }
           numberOfMonths={ 1 }
