@@ -6,12 +6,17 @@ import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } fro
 
 export class ExpenseListFilters extends React.Component {
   state = {
-    calFocused: null
+    calFocused: null,
+    focusedInput: null
   };
 
   onDatesChange = ( { startDate, endDate } ) => {
     this.props.setStartDate( startDate );
     this.props.setEndDate( endDate );
+
+    this.setState( {
+      focusedInput: startDate && !endDate ? 'startDate' : 'endDate'
+    } );
   };
 
   onFocusChange = ( calFocused ) => {
