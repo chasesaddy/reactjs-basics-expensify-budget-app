@@ -1,5 +1,12 @@
 import db from './firebase-config';
 
+// my own quick testing to see how to get ID of pushed stuff.
+const heh = db.ref( 'rofl' ).push( 'lol' );
+
+console.log( 'lol', heh.key );
+
+// 
+
 db.ref()
   .once( 'value' )
   .then( ( snapshot ) => { 

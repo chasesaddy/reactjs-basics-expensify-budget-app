@@ -51,8 +51,19 @@ test( 'should add expense to database and store', ( done ) => {
     createdAt: 1000
   };
 
-  store.dispatch( startAddExpense( expenseData ) ).then( () => { 
-    expect( 1 ).toBe( 1 );
+  store.dispatch( startAddExpense( expenseData ) ).then( ( result ) => { 
+    // data was saved to db
+
+    // dispatch did happen/action correctly dispatched
+    const actions = store.getActions();
+    expect( actions[ 0 ] ).toEqual( { 
+      type: 'ADD_EXPENSE',
+      expense: {
+        id: expect.any( String ),
+        ...expenseData
+      }
+    } );
+
     done();
   } );
 } );
