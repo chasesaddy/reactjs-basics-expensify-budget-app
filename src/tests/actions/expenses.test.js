@@ -1,4 +1,10 @@
-import { addExpense, removeExpense, editExpense } from '../../actions/expenses';
+import { addExpense, removeExpense, editExpense, startAddExpense } from '../../actions/expenses';
+import expenses from '../fixtures/expenses';
+
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+
+const createMockStore = configureStore( [ thunk ] );
 
 test( 'should setup remove expense action object', () => { 
   const action = removeExpense( { id: '123abc' } );
@@ -27,34 +33,45 @@ test( 'should setup edit expense action object', () => {
 } );
 
 test( 'should setup add expense action object with provided values', () => { 
-  const expenseData = { 
-    description: 'lol', 
-    amount: 50, 
-    note: 'okay',
-    createdAt: 100
-  }
-  const action = addExpense( expenseData );
+  const action = addExpense( expenses[ 2 ] );
 
   expect( action ).toEqual( {
     type: 'ADD_EXPENSE',
-    expense: {
-      id: expect.any( String ),
-      ...expenseData
-    }
+    expense: expenses[ 2 ]
   } );
 } );
 
-test( 'should setup add expense action object with default values', () => { 
-  const action = addExpense();
+test( 'should add expense to database and store', ( done ) => { 
+  const initialState = {}
+  const store = createMockStore( initialState );
+  const expenseData = {
+    description: 'Mouse',
+    amount: 3000,
+    note: 'This one is better',
+    createdAt: 1000
+  };
 
-  expect( action ).toEqual( {
-    type: 'ADD_EXPENSE',
-    expense: {
-      id: expect.any( String ),
-      description: '',
-      note: '',
-      amount: 0,
-      createdAt: 0
-    }
+  store.dispatch( startAddExpense( expenseData ) ).then( () => { 
+    expect( 1 ).toBe( 1 );
+    done();
   } );
 } );
+
+test( 'should add expense with defaults to database and store', () => { 
+  
+} );
+
+// test( 'should setup add expense action object with default values', () => { 
+//   const action = addExpense();
+
+//   expect( action ).toEqual( {
+//     type: 'ADD_EXPENSE',
+//     expense: {
+//       id: expect.any( String ),
+//       description: '',
+//       note: '',
+//       amount: 0,
+//       createdAt: 0
+//     }
+//   } );
+// } );

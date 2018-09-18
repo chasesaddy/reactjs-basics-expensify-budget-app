@@ -1,9 +1,9 @@
 const promise = new Promise( ( resolve, reject ) => {
   setTimeout( () => {
-    // resolve( {
-    //   name: 'Moi',
-    //   age: 28
-    // } );
+    resolve( {
+      name: 'Moi',
+      age: 28
+    } );
     reject( 'Something went wrong' );
   }, 2500 );
 } );
@@ -21,3 +21,13 @@ promise.then( ( data ) => {
 } );
 
 console.log( 'after' );
+
+// promise chaining
+promise.then( ( data ) => { 
+  console.log( 'FIRST CHAIN', data );
+  return 'lol';
+} ).then( ( data ) => { 
+  console.log( 'NEXT CHAIN', data );
+} ).catch( ( err ) => { 
+  console.log( 'err: ', err );
+} );
