@@ -44,8 +44,7 @@ test( 'should setup add expense action object with provided values', () => {
 } );
 
 test( 'should add expense to database and store', ( done ) => { 
-  const initialState = {}
-  const store = createMockStore( initialState );
+  const store = createMockStore( {} );
   const expenseData = {
     description: 'Mouse',
     amount: 3000,
@@ -65,15 +64,39 @@ test( 'should add expense to database and store', ( done ) => {
     } );
 
     // data was saved to db
-    db.ref( `expenses/${ actions[ 0 ].expense.id }` ).once( 'value' ).then((snapshot ) => { 
-      expect( snapshot.val() ).toEqual( expenseData );
-      done();
+    return db.ref( `expenses/${ actions[ 0 ].expense.id }` ).once( 'value' );
+  } ).then((snapshot ) => { 
+    expect( snapshot.val() ).toEqual( expenseData );
+    done();
     } );
-  } );
 } );
 
-test( 'should add expense with defaults to database and store', () => { 
-  
+test( 'should add expense with defaults to database and store', ( done ) => { 
+  const store = createMockStore( {} );
+  const defaultData = {
+    description: '',
+    note: '',
+    amount: 0,
+    createdAt: 0
+  };
+
+  store.dispatch( startAddExpense( {} ) ).then( () => { 
+    // dispatch did happen/action correctly dispatched
+    const actions = store.getActions();
+    expect( actions[ 0 ] ).toEqual( { 
+      type: 'ADD_EXPENSE',
+      expense: {
+        id: expect.any( String ),
+        ...defaultData
+      }
+    } );
+
+    // data was saved to db
+    return db.ref( `expenses/${ actions[ 0 ].expense.id }` ).once( 'value' );
+  } ).then((snapshot ) => { 
+    expect( snapshot.val() ).toEqual( defaultData );
+    done();
+    } );
 } );
 
 // test( 'should setup add expense action object with default values', () => { 
