@@ -4,6 +4,8 @@ import expenses from '../fixtures/expenses';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
+import db from '../../firebase/firebase';
+
 const createMockStore = configureStore( [ thunk ] );
 
 test( 'should setup remove expense action object', () => { 
@@ -51,9 +53,7 @@ test( 'should add expense to database and store', ( done ) => {
     createdAt: 1000
   };
 
-  store.dispatch( startAddExpense( expenseData ) ).then( ( result ) => { 
-    // data was saved to db
-
+  store.dispatch( startAddExpense( expenseData ) ).then( () => { 
     // dispatch did happen/action correctly dispatched
     const actions = store.getActions();
     expect( actions[ 0 ] ).toEqual( { 
@@ -64,7 +64,11 @@ test( 'should add expense to database and store', ( done ) => {
       }
     } );
 
-    done();
+    // data was saved to db
+    db.ref( `expenses/${ actions[ 0 ].expense.id }` ).once( 'value' ).then((snapshot ) => { 
+      expect( snapshot.val() ).toEqual( expenseData );
+      done();
+    } );
   } );
 } );
 
