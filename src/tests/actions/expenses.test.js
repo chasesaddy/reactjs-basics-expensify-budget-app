@@ -16,7 +16,7 @@ test( 'should setup remove expense action object', () => {
   } );
 } );
 
-test( 'should setup edit expense action object', () => {   
+test( 'should setup edit expense action object', () => { 
   const action = editExpense( 
     '123abc', 
     { 
