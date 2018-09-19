@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-class LoginPage extends React.Component {
+import { startLogin } from '../actions/auth';
+
+export class LoginPage extends React.Component {
   render() {
     return (
       <div>
@@ -8,7 +11,9 @@ class LoginPage extends React.Component {
           Login Page
         </h1>        
 
-        <button>
+        <button
+          onClick={ this.props.startLogin }
+        >
           Login
         </button>
       </div>
@@ -16,4 +21,8 @@ class LoginPage extends React.Component {
   };
 }
 
-export { LoginPage };
+const mapDispatchToProps = ( dispatch ) => ( { 
+  startLogin: () => dispatch( startLogin() )
+} );
+
+export default connect( undefined, mapDispatchToProps )( LoginPage );

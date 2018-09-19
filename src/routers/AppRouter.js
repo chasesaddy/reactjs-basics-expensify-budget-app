@@ -6,7 +6,7 @@ import Dashboard from '../components/Dashboard';
 import Add from '../components/Add';
 import Edit from '../components/Edit';
 import Header from '../components/Header';
-import { LoginPage } from '../components/LoginPage';
+import LoginPage from '../components/LoginPage';
 import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
 
