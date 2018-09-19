@@ -6,7 +6,8 @@ import {
   startAddExpense, 
   removeExpense, 
   startRemoveExpense,
-  editExpense,   
+  editExpense, 
+  startEditExpense, 
   setExpenses, 
   startSetExpenses } from '../../actions/expenses';
 
@@ -78,6 +79,34 @@ test( 'should setup edit expense action object', () => {
       description: 'lol', 
       amount: 50 
     }
+  } );
+} );
+
+test( 'should edit expenses from firebase', ( done ) => { 
+  const store = createMockStore( {} );
+  const example = expenses[ 0 ];
+  const updates = {
+    description: 'lol',
+    amount: 50
+  };
+
+  store.dispatch( startEditExpense( example.id, updates ) ).then( () => { 
+    // dispatch did happen/action correctly dispatched
+    const actions = store.getActions();
+    expect( actions[ 0 ] ).toEqual( { 
+      type: 'EDIT_EXPENSE',
+      id: example.id,
+      updates
+    } );
+
+    // data was saved to db
+    db.ref( `expenses/${ example.id }` ).once( 'value' ).then( ( snapshot ) => { 
+      expect( snapshot.val() ).not.toEqual( example );
+      expect( snapshot.val().description ).toEqual( updates.description );
+      expect( snapshot.val().amount ).toEqual( updates.amount );
+      done();
+    } );
+
   } );
 } );
 
