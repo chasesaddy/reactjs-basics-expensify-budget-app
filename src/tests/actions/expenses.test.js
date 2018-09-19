@@ -100,7 +100,7 @@ test( 'should edit expenses from firebase', ( done ) => {
     } );
 
     // data was saved to db
-    db.ref( `expenses/${ example.id }` ).once( 'value' ).then( ( snapshot ) => { 
+    return db.ref( `expenses/${ example.id }` ).once( 'value' ).then( ( snapshot ) => { 
       expect( snapshot.val() ).not.toEqual( example );
       expect( snapshot.val().description ).toEqual( updates.description );
       expect( snapshot.val().amount ).toEqual( updates.amount );
