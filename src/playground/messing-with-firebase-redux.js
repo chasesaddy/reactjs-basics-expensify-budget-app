@@ -1,11 +1,22 @@
-import uuid from 'uuid';
 import db from '../firebase/firebase';
 
-// 
-//// Expenses
-// 
 
-// ADD_EXPENSE
+const startSetExpenses = ( expenseData = {} ) => {
+  return db.ref( 'expenses' ).once( 'value' ).then( ( snapshot ) => { 
+    const data = [];
+    snapshot.forEach( ( solo ) => { 
+      data.push(
+        {
+          id: solo.key,
+          ...solo.val()
+        }
+      )
+    } );
+    console.log( data );
+  } );
+};
+
+// startSetExpenses();
 
 const addExpense = ( expense ) => ({
   type: 'ADD_EXPENSE',
@@ -23,7 +34,7 @@ export const startAddExpense = ( expenseData = {} ) => {
 
     const expense = { description, note, amount, createdAt };
 
-    db.ref( 'expenses' ).push( expense).then( ( ref ) => { 
+    return db.ref( 'expenses' ).push( expense ).then( ( ref ) => { 
       dispatch( addExpense( { 
         id: ref.key,
         ...expense
@@ -32,19 +43,4 @@ export const startAddExpense = ( expenseData = {} ) => {
   };
 };
 
-// REMOVE_EXPENSE
-
-const removeExpense = ({ id } = {}) => ({
-  type: 'REMOVE_EXPENSE',
-  id
-});
-
-// EDIT_EXPENSE
-
-const editExpense = ( id, updates ) => ({
-  type: 'EDIT_EXPENSE',
-  id,
-  updates
-});
-
-export { addExpense, removeExpense, editExpense };
+// startAddExpense();

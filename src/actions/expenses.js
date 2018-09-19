@@ -53,6 +53,19 @@ const setExpenses = ( expenses ) => ( {
   expenses
 } );
 
-const startSetExpenses = () => {};
+const startSetExpenses = () => {
+  return ( dispatch ) => {
+    return db.ref( 'expenses' ).once( 'value' ).then( ( snapshot ) => { 
+      const allExpenses = [];
+      snapshot.forEach( ( solo ) => { 
+        allExpenses.push( {
+          id: solo.key,
+          ...solo.val()
+        } );
+      } );      
+      dispatch( setExpenses( allExpenses ) );
+    } );
+  };
+};
 
 export { addExpense, removeExpense, editExpense, startAddExpense, setExpenses, startSetExpenses };
