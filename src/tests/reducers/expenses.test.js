@@ -87,3 +87,40 @@ test( 'should not edit expense if [id] not found', () => {
   const state = expensesReducer( expenses, action );
   expect( state ).toEqual( expenses );
 } );
+
+test( 'should set expenses (clearing out all old ones, I didn\'t get that at first', () => { 
+  const someExpense = {
+    description: '1 - yo and another one',
+    note: 'yo and here we go',
+    amount: 19110,
+    createdAt: 19150
+  };
+  const action = {
+    type: 'SET_EXPENSES',
+    expenses: [ someExpense ]
+  };
+
+  const state = expensesReducer( expenses, action );
+  expect( state ).toEqual( [ someExpense ] );
+} );
+
+test( 'should add expenses on (multiple) like what "set expenses" sounded like to me :(', () => { 
+  const someExpenses = [{
+    description: '1 - yo and another one',
+    note: 'yo and here we go',
+    amount: 19110,
+    createdAt: 19150
+  }, {
+    description: '2 - the second settings',
+    note: 'go for a second time fam',
+    amount: 22000,
+    createdAt: 29150
+  }];
+  const action = {
+    type: 'ADD_EXPENSES',
+    expenses: someExpenses
+  };
+
+  const state = expensesReducer( expenses, action );
+  expect( state ).toEqual( [ ...expenses, ...someExpenses ] );
+} );

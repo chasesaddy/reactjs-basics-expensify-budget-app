@@ -23,8 +23,16 @@ const expensesReducer = ( state = expensesReducerDefaultState, action ) => {
         return oneExpense;
       }
     });
+  case 'SET_EXPENSES':
+    return action.expenses;
+  case 'ADD_EXPENSES':
+    return [
+      ...state, 
+      ...action.expenses
+    ];
   default:
     // will print filterReducer action.type
+    // console.log( 'DID DEFAULT EXPENSE REDUCER' );
     console.log( action.type );
     return state;
   }
