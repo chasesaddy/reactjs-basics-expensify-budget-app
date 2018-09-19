@@ -52,7 +52,9 @@ test( 'should remove expenses from firebase', ( done ) => {
 
     // data was saved to db
     db.ref( `expenses/${ example.id }` ).once( 'value' ).then( ( snapshot ) => { 
-      expect( snapshot.val() ).toEqual( null );
+      // both are equivalent
+      // expect( snapshot.val() ).toEqual( null );
+      expect( snapshot.val() ).toBeFalsy();;
       done();
     } );
   } );
