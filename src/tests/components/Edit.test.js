@@ -5,10 +5,10 @@ import { EditExpensePage } from '../../components/Edit';
 
 import expenses from '../fixtures/expenses';
 
-let wrapper, editExpense, removeExpense, history, example;
+let wrapper, editExpense, startRemoveExpense, history, example;
 beforeEach( () => { 
   editExpense = jest.fn();
-  removeExpense = jest.fn();
+  startRemoveExpense = jest.fn();
   
   history = { push: jest.fn() };
 
@@ -18,7 +18,7 @@ beforeEach( () => {
     expense={ example } 
     history={ history } 
     editExpense={ editExpense } 
-    removeExpense={ removeExpense } 
+    startRemoveExpense={ startRemoveExpense } 
   /> )
 } );
 
@@ -33,9 +33,9 @@ test( 'should handle onSubmit which is editExpense', () => {
   expect( editExpense ).toHaveBeenLastCalledWith( example.id, example );
 } );
 
-test( 'should handle onClick which is removeExpense', () => { 
+test( 'should handle onClick which is startRemoveExpense', () => { 
   wrapper.find( 'button' ).simulate( 'click' );
 
   expect( history.push ).toHaveBeenLastCalledWith( '/' );
-  expect( removeExpense ).toHaveBeenLastCalledWith( { id: example.id } );
+  expect( startRemoveExpense ).toHaveBeenLastCalledWith( { id: example.id } );
 } );
