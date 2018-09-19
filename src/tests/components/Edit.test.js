@@ -19,7 +19,7 @@ beforeEach( () => {
     history={ history } 
     startEditExpense={ startEditExpense } 
     startRemoveExpense={ startRemoveExpense } 
-  /> )
+  /> );
 } );
 
 test( 'should render EditExpensePage correctly', () => { 
