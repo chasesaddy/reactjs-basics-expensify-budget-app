@@ -52,6 +52,23 @@ exports[`should render [simple] Header correctly 1`] = `
         Help
       </NavLink>
     </li>
+    <button
+      onClick={
+        [MockFunction] {
+          "calls": Array [
+            Array [],
+          ],
+          "results": Array [
+            Object {
+              "isThrow": false,
+              "value": undefined,
+            },
+          ],
+        }
+      }
+    >
+      Logout
+    </button>
   </ul>
 </header>
 `;

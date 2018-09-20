@@ -6,4 +6,10 @@ const startLogin = () => {
   };
 };
 
-export { startLogin };
+const startLogout = () => {
+  return () => {
+    return firebase.auth().signOut();
+  };
+};
+
+export { startLogin, startLogout };
