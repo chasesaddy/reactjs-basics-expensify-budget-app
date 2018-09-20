@@ -55,7 +55,7 @@ test( 'should remove expenses from firebase', ( done ) => {
     db.ref( `expenses/${ example.id }` ).once( 'value' ).then( ( snapshot ) => { 
       // both are equivalent
       // expect( snapshot.val() ).toEqual( null );
-      expect( snapshot.val() ).toBeFalsy();;
+      expect( snapshot.val() ).toBeFalsy();
       done();
     } );
   } );
@@ -147,7 +147,7 @@ test( 'should add expense to database and store', ( done ) => {
   } ).then((snapshot ) => { 
     expect( snapshot.val() ).toEqual( expenseData );
     done();
-    } );
+  } );
 } );
 
 test( 'should add expense with defaults to database and store', ( done ) => { 
@@ -175,7 +175,7 @@ test( 'should add expense with defaults to database and store', ( done ) => {
   } ).then((snapshot ) => { 
     expect( snapshot.val() ).toEqual( defaultData );
     done();
-    } );
+  } );
 } );
 
 

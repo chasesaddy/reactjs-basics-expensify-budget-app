@@ -1,5 +1,5 @@
 import expensesReducer from '../../reducers/expenses';
-import expenses from '../fixtures/expenses'
+import expenses from '../fixtures/expenses';
 
 test( 'should set default value', () => { 
   const state = expensesReducer( undefined, { type: '@@INT' } );
@@ -35,7 +35,7 @@ test( 'should add expense', () => {
     note: 'here we go',
     amount: 10,
     createdAt: 50
-  }
+  };
   const action = {
     type: 'ADD_EXPENSE',
     expense
@@ -48,7 +48,7 @@ test( 'should add expense', () => {
   // My ways i thought of
   expect( state ).toHaveLength( 4 );
   expect( state[ state.length - 1 ].description ).toEqual( 'another one' );
-} )
+} );
 
 
 // edit expense
@@ -59,7 +59,7 @@ test( 'should edit expense', () => {
     note: 'and here we go',
     amount: 110,
     createdAt: 150
-  }
+  };
   const action = {
     type: 'EDIT_EXPENSE',
     id: expenses[ 1 ].id,
