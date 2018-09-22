@@ -3,10 +3,10 @@ import moment from 'moment';
 const getVisibleExpenses = ( expenses, { text, sortBy, startDate, endDate } ) => {
   return expenses.filter( ( solo ) => {
     
-    const createdAtMoment = moment( solo.createdAt )
+    const createdAtMoment = moment( solo.createdAt );
 
-    const startDateMatched = startDate ? moment( startDate ).isSameOrBefore( createdAtMoment, 'day' ) : true;
-    const endDateMatched = endDate ? moment( endDate ).isSameOrAfter( createdAtMoment, 'day' ) : true;
+    const startDateMatched = startDateMatch( createdAtMoment, startDate );
+    const endDateMatched = endDateMatch( createdAtMoment, endDate );
     const textMatched = textMatch( solo.description, text );
 
     return startDateMatched && endDateMatched && textMatched;
@@ -19,12 +19,12 @@ const getVisibleExpenses = ( expenses, { text, sortBy, startDate, endDate } ) =>
   });
 };
 
-const startDateMatch = ( objCreatedDate, startDate ) => {
-  return ( typeof startDate !== 'number' || objCreatedDate >= startDate );
+const startDateMatch = ( createdAtMoment, startDate ) => {
+  return startDate ? moment( startDate ).isSameOrBefore( createdAtMoment, 'day' ) : true;
 };
 
-const endDateMatch = ( objCreatedDate, endDate ) => {
-  return ( typeof endDate !== 'number' || objCreatedDate <= endDate );
+const endDateMatch = ( createdAtMoment, endDate ) => {
+  return endDate ? moment( endDate ).isSameOrAfter( createdAtMoment, 'day' ) : true;
 };
 
 const textMatch = ( objText, text ) => {
