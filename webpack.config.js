@@ -58,7 +58,7 @@ module.exports = ( env ) => {
         // both options are optional
         // filename: !isProduction ? '[name].css' : '[name].[hash].css',
         // chunkFilename: !isProduction ? '[id].css' : '[id].[hash].css',
-        filename: 'style.css',
+        filename: 'styles.css',
         chunkFilename: '[id].css'
       } ),
       new OptimizeCssAssetsPlugin( {
