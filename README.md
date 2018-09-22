@@ -1,2 +1,2 @@
-# First go at learning React
-Quickly going through basic Udemy React tutorial by Andrew
+# First go at React
+Going through the basic Udemy React tutorial by Andrew Mead
