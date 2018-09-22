@@ -12,23 +12,12 @@ export const Header = ( { startLogout } ) => (
 
     <ul>
       <li>
-        <NavLink to="/" activeClassName="is-active" exact={ true }>Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard" activeClassName="is-active">Dashboard</NavLink>
+        <NavLink to="/" activeClassName="is-active">Dashboard</NavLink>
       </li>
       <li>
         <NavLink to="/create" activeClassName="is-active">Create</NavLink>
       </li>
-      <li>
-        <NavLink to="/edit" activeClassName="is-active">Edit</NavLink>
-      </li>
-      <li>
-        <NavLink to="/help" activeClassName="is-active">Help</NavLink>
-      </li>
-      <button 
-        onClick={ startLogout }
-      >
+      <button onClick={ startLogout }>
         Logout
       </button>
     </ul>
