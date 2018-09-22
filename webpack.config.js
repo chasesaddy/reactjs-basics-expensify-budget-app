@@ -50,8 +50,8 @@ module.exports = ( env ) => {
         'process.env.FIREBASE_AUTH_DOMAIN': JSON.stringify( process.env.FIREBASE_AUTH_DOMAIN ),
         'process.env.FIREBASE_DATABASE_URL': JSON.stringify( process.env.FIREBASE_DATABASE_URL ),
         'process.env.FIREBASE_PROJECT_ID': JSON.stringify( process.env.FIREBASE_PROJECT_ID ),
-        'process.env.FIREBASE_STORAGE_BUCKET': JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET ),
-        'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID )
+        'process.env.FIREBASE_STORAGE_BUCKET': JSON.stringify( process.env.FIREBASE_STORAGE_BUCKET ),
+        'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify( process.env.FIREBASE_MESSAGING_SENDER_ID )
       } ),
       new MiniCssExtractPlugin( {
         // Options similar to the same options in webpackOptions.output
