@@ -1,0 +1,36 @@
+// copied from /rules
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+      "users": {
+        "$user_id": {
+          ".read": "$user_id === auth.uid",
+          ".write": "$user_id === auth.uid",
+          "expenses": {
+            "$expense_id": {
+              ".validate": "newData.hasChildren(['description', 'amount', 'note', 'createdAt'])",
+              "description": {
+              	".validate": "newData.isString() && newData.val() >= 1"
+              },
+              "amount": {
+                ".validate": "newData.isNumber()"
+              },
+              "note": {
+                ".validate": "newData.isString()"
+              },
+              "createdAt": {
+                ".validate": "newData.isNumber()"
+              },
+              "$other": {
+            		".validate": false
+          		}
+            }
+          },
+          "$other": {
+            ".validate": false
+          }
+        }
+      }
+  }
+}
