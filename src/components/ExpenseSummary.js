@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import numeral from 'numeraljs';
 
 import selectExpenses from '../selectors/expenses';
@@ -15,8 +16,13 @@ export class ExpenseSummary extends React.Component {
 
   render() {
     return (
-      <div>
-        Viewing { this.props.expenseCount } { this.plural() } totalling { this.totalAmount() }
+      <div className="page-header">
+        <div className="content-container">
+          <h1 className="page-header__title">Viewing <span>{ this.props.expenseCount }</span > { this.plural() } totalling <span>{ this.totalAmount() }</span></h1>
+          <div className="page-header__actions">
+            <Link className="button" to="/create">Add Expense</Link>
+          </div>
+        </div>
       </div>
     );
   }
