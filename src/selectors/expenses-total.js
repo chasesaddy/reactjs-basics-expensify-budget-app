@@ -4,4 +4,8 @@ const selectExpensesTotal = ( expenses = [] ) => {
   return amounts.reduce( reducer, 0 );
 };
 
+export const expensesCount = ( expenses = [] ) => {
+  return expenses.length;
+};
+
 export default selectExpensesTotal;
