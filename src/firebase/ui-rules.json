@@ -11,7 +11,7 @@
             "$expense_id": {
               ".validate": "newData.hasChildren(['description', 'amount', 'note', 'createdAt'])",
               "description": {
-              	".validate": "newData.isString() && newData.val() >= 1"
+              	".validate": "newData.isString() && newData.val().length >= 1"
               },
               "amount": {
                 ".validate": "newData.isNumber()"
